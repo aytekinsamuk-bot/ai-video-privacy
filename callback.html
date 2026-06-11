@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>TikTok Callback</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 50px auto; padding: 20px; text-align: center; }
+        .success { color: #30D158; font-size: 24px; margin-bottom: 20px; }
+        .code { background: #f5f5f5; padding: 15px; border-radius: 8px; font-family: monospace; word-break: break-all; margin: 20px 0; }
+        button { background: #0071E3; color: white; border: none; padding: 12px 24px; border-radius: 8px; font-size: 16px; cursor: pointer; }
+        button:hover { background: #0051a5; }
+    </style>
+</head>
+<body>
+    <div class="success">✅ TikTok Yetkilendirmesi Başarılı!</div>
+    <p>Aşağıdaki kodu kopyala:</p>
+    <div class="code" id="authCode">Yükleniyor...</div>
+    <button onclick="copyCode()">📋 Kodu Kopyala</button>
+    
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const code = urlParams.get('code');
+        
+        if (code) {
+            document.getElementById('authCode').textContent = code;
+        } else {
+            document.getElementById('authCode').textContent = '❌ Kod bulunamadı';
+        }
+        
+        function copyCode() {
+            navigator.clipboard.writeText(code).then(() => {
+                alert('✅ Kod kopyalandı!');
+            });
+        }
+    </script>
+</body>
+</html>
